@@ -27,19 +27,20 @@ call plug#begin('~/.vim/plugged')
 Plug 'tmhedberg/SimpylFold'
 Plug 'vim-scripts/indentpython.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'} "New completion
-Plug 'vim-syntastic/syntastic' "Syntax checking
+"Plug 'vim-syntastic/syntastic' "Syntax checking
 Plug 'altercation/vim-colors-solarized' "Solarized colorscheme
 Plug 'scrooloose/nerdtree'
 Plug 'kien/ctrlp.vim' "CTRL+P to search
 Plug 'vim-airline/vim-airline'
 Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'rust-lang/rust.vim', {'for': 'rust'} "Rust checker
-Plug 'psf/black', { 'for': 'python' } "Black python formater
+Plug 'psf/black', { 'for': 'python', 'branch': 'stable' } "Black python formater
 Plug 'gu-fan/riv.vim' "ReStructuredText add-in
 "Plugin 'morhetz/gruvbox'    "Better terminal mode than solarized
 "Plugin 'Valloric/YouCompleteMe'
 "Plugin 'nvie/vim-flake8' "PEP8 checking
 "Plugin 'gu-fan/InstantRst' "Instant RST renderer
+Plug 'igankevich/mesonic'  "Meson highlighting/integration
 
 call plug#end()
 
