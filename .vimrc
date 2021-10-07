@@ -138,8 +138,20 @@ au BufNewFile,BufRead *.c,*.h,*.cpp,*.hpp
     \ endif |
     \ highlight ColorColumn ctermbg=lightgrey guibg=lightgrey
 
-" Run clang-format when saving a python file.
+" Run clang-format when saving a C/C++ file.
 autocmd BufWritePre *.c,*.h,*.cpp,*.hpp execute ':Format'
+
+"SystemVerilog: Conform to google? formatting
+au BufNewFile,BufRead *.v,*.sv
+    \ setlocal tabstop=2 |
+    \ setlocal softtabstop=2 |
+    \ setlocal shiftwidth=2 |
+    \ setlocal textwidth=79 |
+    \ setlocal expandtab |
+    \ setlocal autoindent |
+    \ setlocal fileformat=unix |
+    \ setlocal encoding=utf-8 |
+    \ setlocal nu
 
 "Asm formatting
 au BufNewFile,BufRead *.asm,*.S,*.s
@@ -357,16 +369,16 @@ let g:rustfmt_autosave = 1
 
 
 "python with virtualenv support
-python3 << EOF
-import os
-import subprocess
-if 'VIRTUAL_ENV' in os.environ:
-  project_base_dir = os.environ['VIRTUAL_ENV']
-  activate_this = os.path.join(project_base_dir, 'bin', 'activate_this.py')
-  # print(activate_this)
-  subprocess.call('source %s' % activate_this, shell=True)
-  #execfile(activate_this, dict(__file__=activate_this))
-EOF
+"python3 << EOF
+"import os
+"import subprocess
+"if 'VIRTUAL_ENV' in os.environ:
+"  project_base_dir = os.environ['VIRTUAL_ENV']
+"  activate_this = os.path.join(project_base_dir, 'bin', 'activate_this.py')
+"  # print(activate_this)
+"  subprocess.call('source %s' % activate_this, shell=True)
+"  #execfile(activate_this, dict(__file__=activate_this))
+"EOF
 
 "Enable Syntax Highlighting for python
 let python_highlight_all=1
