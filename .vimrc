@@ -41,6 +41,7 @@ Plug 'gu-fan/riv.vim' "ReStructuredText add-in
 "Plugin 'nvie/vim-flake8' "PEP8 checking
 "Plugin 'gu-fan/InstantRst' "Instant RST renderer
 Plug 'igankevich/mesonic'  "Meson highlighting/integration
+Plug 'tpope/vim-fugitive' "Git integration
 
 call plug#end()
 
@@ -228,13 +229,6 @@ set hidden  "hides changed files instead of closing, required for coc
 set updatetime=300 "Faster interaction
 set shortmess+=c  "don't pass mesages to |ins_completion-menu|.
 set signcolumn=yes  "prevents shifting text w/ diagnostics
-
-"tab through completion list, tab not working, but shifttab does?
-inoremap <silent>expr> <TAB>
-	\ pumvisible() ? "\<C-n>" :
-	\ <SID>check_back_space() ? "\<TAB>" :
-	\ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 function! s:check_back_space() abort
 	let col = col('.') - 1
