@@ -17,11 +17,13 @@ filetype off                  " required
 "" let Vundle manage Vundle, required
 "Plugin 'VundleVim/vundle.vim'
 
-if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+"Autoinstall VIM-Plug if not already installed
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
+
 call plug#begin('~/.vim/plugged')
 "Plugins
 Plug 'tmhedberg/SimpylFold'
@@ -44,22 +46,6 @@ Plug 'igankevich/mesonic'  "Meson highlighting/integration
 Plug 'tpope/vim-fugitive' "Git integration
 
 call plug#end()
-
-
-"" All of your Plugins must be added before the following line
-"call vundle#end()            " required
-"filetype plugin indent on    " required
-"" To ignore plugin indent changes, instead use:
-""filetype plugin on
-""
-"" Brief help
-"" :PluginList       - lists configured plugins
-"" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-"" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-"" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-""
-"" see :h vundle for more details or wiki for FAQ
-"" Put your non-Plugin stuff after this line
 
 "Set Line numbering and some formatting happiness
 set nu
