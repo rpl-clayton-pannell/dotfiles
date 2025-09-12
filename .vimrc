@@ -27,7 +27,7 @@ endif
 call plug#begin('~/.vim/plugged')
 "Plugins
 Plug 'tmhedberg/SimpylFold'
-Plug 'vim-scripts/indentpython.vim'
+"Plug 'vim-scripts/indentpython.vim'
 "Plug 'neoclide/coc.nvim', {'branch': 'release'} "New completion
 "Plug 'vim-syntastic/syntastic' "Syntax checking
 Plug 'altercation/vim-colors-solarized' "Solarized colorscheme
@@ -51,6 +51,7 @@ Plug 'hrsh7th/cmp-buffer'  "nvim completion
 Plug 'hrsh7th/cmp-path'  "nvim completion
 Plug 'hrsh7th/cmp-cmdline'  "nvim completion
 Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate'}  "AST based syntax highlighting
+"Plug 'creativenull/efmls-configs-nvim', {'tag': 'v1.*' } " efm-langserver preset configs.
 
 call plug#end()
 
@@ -134,7 +135,7 @@ au BufNewFile,BufRead *.c,*.h,*.cpp,*.hpp
 
 " Run clang-format when saving a C/C++ file.
 " autocmd BufWritePre *.c,*.h,*.cpp,*.hpp execute ':Format'
-autocmd BufWritePre *.c,*.h,*.cpp,*.hpp lua vim.lsp.buf.format()
+" autocmd BufWritePre *.c,*.h,*.cpp,*.hpp lua vim.lsp.buf.format()
 
 "SystemVerilog: Conform to google? formatting
 au BufNewFile,BufRead *.v,*.sv
@@ -197,9 +198,11 @@ au BufRead,BufNewFile *.py,*.pyw,*.pyx,*.kv,*.c,*.h match BadWhitespace /\s\+$/
 " Use the below highlight group when displaying bad whitespace is desired.
 highlight BadWhitespace ctermbg=red guibg=red
 
-" Run black when saving a python file.
-autocmd BufWritePre *.py execute ':Black'
-" Set Black line length to 79 chars
+"" Run black when saving a python file.
+" autocmd BufWritePre *.py execute ':Black'
+
+" Run darker to run Black on changes when saving a python file.
+autocmd BufWritePost *.py silent execute ':!darker %'
 
 
 "Add formatting for javascript, html, and css
